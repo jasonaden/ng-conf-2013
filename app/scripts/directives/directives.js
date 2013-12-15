@@ -28,7 +28,6 @@
 
                         this.$setViewValue = noop;
 
-                        $scope.$watch(noop);
                     }]
             }
         });
