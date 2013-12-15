@@ -8,6 +8,16 @@
                 require: '?ngModel',
                 link: function (scope, element, attr, ctrl) {
                     if (ctrl) {
+                        var listener = function () {
+                            var value = element.val();
+
+                            if (ctrl.$viewValue !== value) {
+                                scope.$apply(function () {
+                                    ctrl.$setViewValue(value);
+                                })
+                            }
+                        }
+
                         element.on('input', noop);
                     }
                 }
@@ -26,7 +36,9 @@
 
                         this.$render = noop;
 
-                        this.$setViewValue = noop;
+                        this.$setViewValue = function (value) {
+                            this.$viewValue = value;
+                        };
 
                     }]
             }
