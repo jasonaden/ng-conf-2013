@@ -2,27 +2,17 @@
     'use strict';
 
     angular.module('ngConf2013App')
-        .directive('input', ['$browser', '$sniffer', function ($browser, $sniffer) {
+        .directive('input', function () {
             return {
                 restrict: 'E',
                 require: '?ngModel',
                 link: function (scope, element, attr, ctrl) {
                     if (ctrl) {
-                        var listener = function () {
-                            var value = element.val();
-
-                            if (ctrl.$viewValue !== value) {
-                                scope.$apply(function () {
-                                    ctrl.$setViewValue(value);
-                                });
-                            }
-                        };
-
-                        element.on('input', listener);
+                        element.on('input', noop);
                     }
                 }
             };
-        }])
+        })
         .directive('ngModel', function () {
             return {
                 require: ['ngModel', '^?form'],
@@ -36,35 +26,60 @@
 
                         this.$render = noop;
 
-                        this.$setViewValue = function(value) {
-                            this.$viewValue = value;
+                        this.$setViewValue = noop;
 
-                            if (this.$modelValue !== value) {
-                                this.$modelValue = value;
-                                ngModelSet($scope, value);
-                            }
-                        };
-
-                        // model -> value
-                        var ctrl = this;
-                        $scope.$watch(function ngModelWatch() {
-                            var value = ngModelGet($scope);
-
-                            // if scope model value and ngModel value are out of sync
-                            if (ctrl.$modelValue !== value) {
-
-                                ctrl.$modelValue = value;
-                                if (ctrl.$viewValue !== value) {
-                                    ctrl.$viewValue = value;
-                                    ctrl.$render();
-                                }
-                            }
-
-                            return value;
-                        });
+                        $scope.$watch(noop);
                     }]
             }
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // Taken from angularjs source to have variables available locally
