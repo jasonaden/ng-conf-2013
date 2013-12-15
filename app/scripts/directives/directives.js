@@ -38,6 +38,11 @@
 
                         this.$setViewValue = function (value) {
                             this.$viewValue = value;
+
+                            if (this.$modelValue !== value) {
+                                this.$modelValue = value;
+                                ngModelSet($scope, value);
+                            }
                         };
 
                     }]
