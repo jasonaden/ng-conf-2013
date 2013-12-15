@@ -18,7 +18,7 @@
                             }
                         }
 
-                        element.on('input', noop);
+                        element.on('input', listener);
                     }
                 }
             };
