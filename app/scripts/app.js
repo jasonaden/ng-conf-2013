@@ -6,8 +6,7 @@ angular.module('ngConf2013App', [
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                templateUrl: 'views/main.html'
             })
             .otherwise({
                 redirectTo: '/'
