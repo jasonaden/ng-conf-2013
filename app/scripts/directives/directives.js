@@ -19,6 +19,10 @@
                         }
 
                         element.on('input', listener);
+
+                        ctrl.$render = function () {
+                            element.val(isUndefined(ctrl.$viewValue) ? '' : ctrl.$viewValue);
+                        }
                     }
                 }
             };
@@ -44,6 +48,16 @@
                                 ngModelSet($scope, value);
                             }
                         };
+
+                        var ctrl = this;
+                        $scope.$watch(function () {
+                            var value = ngModelGet($scope);
+
+                            if (ctrl.$modelValue !== value) {
+                                ctrl.$viewValue = value;
+                                ctrl.$render();
+                            }
+                        });
 
                     }]
             }
