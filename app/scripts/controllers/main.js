@@ -2,5 +2,5 @@
 
 angular.module('ngConf2013App')
     .controller('MainCtrl', function ($scope) {
-        this.myVariable = 'Magic!';
+        this.myVariable = 'Not so magical!';
     });
