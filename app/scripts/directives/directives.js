@@ -8,7 +8,8 @@
                 require: '?ngModel',
                 link: function (scope, element, attr, ctrl) {
                     if (ctrl) {
-                        element.on('input', noop);
+                        var listener = noop;
+                        element.on('input', listener);
                     }
                 }
             };
