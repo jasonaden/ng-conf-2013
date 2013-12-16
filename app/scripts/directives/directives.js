@@ -19,6 +19,7 @@
                 require: ['ngModel', '^?form'],
                 controller: ['$scope', '$exceptionHandler', '$attrs', '$element', '$parse',
                     function ($scope, $exceptionHandler, $attr, $element, $parse) {
+                        // Default properties to falsy values
                         this.$viewValue = Number.NaN;
                         this.$modelValue = Number.NaN;
 
@@ -26,8 +27,9 @@
                         var ngModelGet = $parse($attr.ngModel),
                             ngModelSet = ngModelGet.assign;
 
+                        // $render method is implemented by a directive that uses ngModel
                         this.$render = noop;
-
+                        
                     }]
             }
         });
