@@ -7,22 +7,9 @@
                 restrict: 'E',
                 require: '?ngModel',
                 link: function (scope, element, attr, ctrl) {
+                    // If no ngModelController, do nothing
                     if (ctrl) {
-                        var listener = function () {
-                            var value = element.val();
 
-                            if (ctrl.$viewValue !== value) {
-                                scope.$apply(function () {
-                                    ctrl.$setViewValue(value);
-                                })
-                            }
-                        }
-
-                        element.on('input', listener);
-
-                        ctrl.$render = function () {
-                            element.val(isUndefined(ctrl.$viewValue) ? '' : ctrl.$viewValue);
-                        }
                     }
                 }
             };
@@ -35,29 +22,11 @@
                         this.$viewValue = Number.NaN;
                         this.$modelValue = Number.NaN;
 
+                        // Getter and Setter for 'main.myVariable'
                         var ngModelGet = $parse($attr.ngModel),
                             ngModelSet = ngModelGet.assign;
 
                         this.$render = noop;
-
-                        this.$setViewValue = function (value) {
-                            this.$viewValue = value;
-
-                            if (this.$modelValue !== value) {
-                                this.$modelValue = value;
-                                ngModelSet($scope, value);
-                            }
-                        };
-
-                        var ctrl = this;
-                        $scope.$watch(function () {
-                            var value = ngModelGet($scope);
-
-                            if (ctrl.$modelValue !== value) {
-                                ctrl.$viewValue = value;
-                                ctrl.$render();
-                            }
-                        });
 
                     }]
             }
