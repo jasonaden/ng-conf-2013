@@ -9,10 +9,21 @@
     <div class="row row-fluid">
 
         <div class="span6 well">
-            <input type="test" ng-model="main.myVariable"/><br>
-            <input type="test" ng-model="main.myVariable"/>
+            <input type="text" ng-model="main.myVariable" ng-minlength="20"/><br>
+            <input type="text" ng-model="main.myVariable"/>
         </div>
         <pre class="span6">{{main.myVariable | json}}</pre>
+
+    </div>
+    <div class="row row-fluid">
+
+        <div class="span6">
+            <pre><code ng-non-bindable>&lt;input type="text" ng-model="main.myVariable"/&gt;
+&lt;input type="text" ng-model="main.myVariable"
+  ng-minlength="20"/&gt;</code></pre>
+        </div>
+        <div class="span6">
+            <pre><code ng-non-bindable>{{main.myVariable | json}}</code></pre></div>
 
     </div>
 
